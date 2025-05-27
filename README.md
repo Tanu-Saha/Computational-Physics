@@ -1,2 +1,2 @@
 # Computational-Physics
-My C++ codes from Computational Physics Course
+These are my C++ codes from the Computational Physics course I took in my third year.
