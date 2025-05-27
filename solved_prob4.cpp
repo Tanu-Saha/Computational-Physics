@@ -1,0 +1,42 @@
+3)  slove dN1/dt=-λ1N1
+dN2/dt=λ1N1-λ2N2
+λ1=2, λ2=3, N1(0)=50 and dN1(0)/dt=0
+
+#include<iostream>
+#include<cmath>
+#include<fstream>
+using namespace std;
+double f1(double t,double x,double v)
+{
+    return -2*x;
+  }
+double f2(double t,double x,double v)
+{
+     return 2*x-3*v;
+   }
+void rk4(double t0,double tf,double x0,double v0)
+{
+    ofstream fout("t.dat");
+    double k1,k2,k3,k4,l1,l2,l3,l4,s1=x0,s2=v0;
+    double h=0.001;
+    for(double t=t0;t<=tf;t+=h)
+    {
+        k1=h*f1(t,s1,s2);
+        l1=h*f2(t,s1,s2);
+        k2=h*f1(t+(h*0.5),s1+(k1*0.5),s2+(l1*0.5));
+        l2=h*f2(t+(h*0.5),s1+(k1*0.5),s2+(l1*0.5));
+        k3=h*f1(t+(h*0.5),s1+(k2*0.5),s2+(l2*0.5));
+        l3=h*f2(t+(h*0.5),s1+(k2*0.5),s2+(l2*0.5));
+        k4=h*f1(t+h,s1+k3,s2+l3);
+        l4=h*f2(t+h,s1+k3,s2+l3);
+        s1+=(k1+2*k2+2*k3+k4)/6;
+        s2+=(l1+2*l2+2*l3+l4)/6;
+        fout<<t<<"  "<<s1<<"  "<<s2<<endl;
+    }
+}
+int main()
+{
+    rk4(0,5,50,0);
+    return 0;
+}
+
