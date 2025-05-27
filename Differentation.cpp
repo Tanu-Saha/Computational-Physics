@@ -17,5 +17,5 @@ int main()
     ofstream fout("t.dat");
     for(double i=0;i<=10;i+=0.1)
         fout<<i<<"   "<<df(i,0.1)<<endl;
-    return 0;
+    return 0;}
 
